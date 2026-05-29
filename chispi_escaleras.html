@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>El atardecer con Chispi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game-container">
+      <header class="game-header">
+        <h1 class="game-title">FINAL</h1>
+        <div class="inventory" id="inventory-bar">
+          <span>🎒 Inventario: <span id="item-actual">Vacío</span></span>
+        </div>
+      </header>
+
+      <section class="game-screen" id="game-screen-bg">
+        <div id="elemento-animado" class="pixel-heart">✨</div>
+      </section>
+
+      <section class="dialogue-box">
+        <p class="dialogue-text" id="dialogue-text">
+          Cargando el final de tu camino...
+        </p>
+      </section>
+
+      <section class="choices-container" id="choices-container">
+        <button class="btn-choice" onclick="reiniciarJuego()">
+          🔄 Volver a empezar la aventura
+        </button>
+      </section>
+    </main>
+
+    <script src="main.js"></script>
+    <script>
+      window.onload = function () {
+        var textoDialogo = document.getElementById("dialogue-text");
+        var itemInventario = document.getElementById("item-actual");
+        var pantallaJuego = document.getElementById("game-screen-bg");
+        var corazon = document.getElementById("elemento-animado");
+
+        if (localStorage.getItem("jugueteChispi") === "encontrado") {
+          if (itemInventario) itemInventario.innerText = "🦴 Juguete";
+          if (pantallaJuego)
+            pantallaJuego.className = "game-screen rama-final-bueno";
+
+          textoDialogo.innerText =
+            "Bajáis los escalones donde tantas veces os sentabais. Veis cómo el sol se oculta en el horizonte... Disfrutasteis de otro atardecer juntas. Te quiero Chispi ✨";
+
+          if (corazon) {
+            corazon.classList.add("animar-corazon");
+          }
+        } else {
+          if (pantallaJuego)
+            pantallaJuego.className = "game-screen rama-final-neutro";
+
+          textoDialogo.innerText =
+            "Bajas las escaleras para ver el atardecer, pero notas que Chispi busca algo con la mirada... le falta algo. Quizás debiste explorar mejor la zona norte.";
+
+          if (corazon) corazon.style.display = "none";
+        }
+      };
+    </script>
+  </body>
+</html>

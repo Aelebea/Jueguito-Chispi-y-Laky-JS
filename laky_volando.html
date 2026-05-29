@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>El atardecer con Laky</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game-container">
+      <header class="game-header">
+        <h1 class="game-title">FINAL</h1>
+        <div class="inventory" id="inventory-bar">
+          <span>🎒 Inventario: <span id="item-actual">Vacío</span></span>
+        </div>
+      </header>
+
+      <section class="game-screen" id="game-screen-bg">
+        <div id="elemento-animado" class="pixel-heart">
+          <img
+            src="https://www.gifsanimados.org/data/media/230/pajaro-y-ave-imagen-animada-0461.gif"
+            alt="Laky volando hacia el atardecer"
+            style="width: 80%; height: auto"
+          />
+        </div>
+      </section>
+
+      <section class="dialogue-box">
+        <p class="dialogue-text" id="dialogue-text">
+          Cargando el final de tu camino...
+        </p>
+      </section>
+
+      <section class="choices-container" id="choices-container">
+        <button class="btn-choice" onclick="reiniciarJuego()">
+          🔄 Volver a empezar la aventura
+        </button>
+      </section>
+    </main>
+
+    <script src="main.js"></script>
+    <script>
+      window.onload = function () {
+        var textoDialogo = document.getElementById("dialogue-text");
+        var itemInventario = document.getElementById("item-actual");
+        var pantallaJuego = document.getElementById("game-screen-bg");
+        var corazon = document.getElementById("elemento-animado");
+
+        if (localStorage.getItem("jugueteChispi") === "encontrado") {
+          if (itemInventario) itemInventario.innerText = "🎨 Dibujo";
+          if (pantallaJuego)
+            pantallaJuego.className = "game-screen rama-final-bueno-laky";
+
+          textoDialogo.innerText =
+            "Laky alza el vuelo hacia el cielo abierto. Contemplas cómo sus alas baten libres mientras el sol tiñe el horizonte de un tono dorado. Se siente libre y feliz. Te quiero Laky ✨";
+
+          if (corazon) {
+            corazon.classList.add("animar-corazon");
+          }
+        } else {
+          if (pantallaJuego)
+            pantallaJuego.className = "game-screen rama-final-neutro-laky";
+
+          textoDialogo.innerText =
+            "Miras hacia el cielo al atardecer, pero notas que a Laky le falta algo para cantar con fuerza... El viaje se siente incompleto. Deberías buscar en el norte, vuelve a intentarlo";
+
+          if (corazon) corazon.style.display = "none";
+        }
+      };
+    </script>
+  </body>
+</html>

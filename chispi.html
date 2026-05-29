@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paseando con Chispi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game-container">
+      <header class="game-header">
+        <h1 class="game-title">CHISPI</h1>
+        <div class="inventory" id="inventory-bar">
+          <span>🎒 Inventario: <span id="item-actual">Vacío</span></span>
+        </div>
+      </header>
+
+      <section class="game-screen rama-chispi" id="game-screen-bg">
+        <div class="interactive-overlay"></div>
+      </section>
+      <section class="dialogue-box">
+        <p class="dialogue-text" id="dialogue-text">
+          Chispi observa el entorno, esperando qué camino elegirás. El viento
+          sopla suavemente. ¿Hacia dónde os dirigís hoy?
+        </p>
+      </section>
+
+      <section class="choices-container" id="choices-container">
+        <button class="btn-choice" onclick="navegarChispi('norte')">
+          🌲 Ir hacia el norte
+        </button>
+        <button class="btn-choice" onclick="navegarChispi('sur')">
+          🌅 Ir hacia el sur
+        </button>
+        <button class="btn-choice" onclick="navegarChispi('parque')">
+          🐾 Bajar los escalones
+        </button>
+      </section>
+    </main>
+
+    <script src="main.js"></script>
+    <script>
+      window.onload = function () {
+        if (localStorage.getItem("jugueteChispi") === "encontrado") {
+          var item = document.getElementById("item-actual");
+          if (item) item.innerText = "🦴 Juguete";
+        }
+      };
+    </script>
+  </body>
+</html>

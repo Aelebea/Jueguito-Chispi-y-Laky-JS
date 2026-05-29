@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Camino cortado</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game-container">
+      <header class="game-header">
+        <h1 class="game-title">CAMINO CORTO</h1>
+        <div class="inventory" id="inventory-bar">
+          <span>🎒 Inventario: <span id="item-actual">Vacío</span></span>
+        </div>
+      </header>
+
+      <section class="game-screen rama-sur-cortado-laky" id="game-screen-bg">
+        <div class="interactive-overlay"></div>
+      </section>
+
+      <section class="dialogue-box">
+        <p class="dialogue-text" id="dialogue-text">
+          El espeso bosque os corta el paso hacia el sur. Laky intenta mirar al
+          otro lado, pero las ramas bloquean el cielo. No hay nada útil por
+          aquí, toca dar la vuelta...
+        </p>
+      </section>
+
+      <section class="choices-container" id="choices-container">
+        <button class="btn-choice" onclick="window.open('laky.html', '_self')">
+          ↩️ Dar la vuelta y regresar
+        </button>
+      </section>
+    </main>
+
+    <script src="main.js"></script>
+    <script>
+      window.onload = function () {
+        if (localStorage.getItem("jugueteChispi") === "encontrado") {
+          var item = document.getElementById("item-actual");
+          if (item) item.innerText = "🎨 Dibujo";
+        }
+      };
+    </script>
+  </body>
+</html>

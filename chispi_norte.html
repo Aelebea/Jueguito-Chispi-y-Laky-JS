@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>El juguete perdido</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game-container">
+      <header class="game-header">
+        <h1 class="game-title">INSPECCIONAR</h1>
+        <div class="inventory" id="inventory-bar">
+          <span>🎒 Inventario: <span id="item-actual">Vacío</span></span>
+        </div>
+      </header>
+
+      <section class="game-screen rama-norte" id="game-screen-bg">
+        <div class="interactive-overlay">
+          <button
+            class="zona-click"
+            id="zona-matorral"
+            onclick="buscarObjeto('matorral')"
+          ></button>
+          <button
+            class="zona-click"
+            id="zona-arbol"
+            onclick="buscarObjeto('arbol')"
+          ></button>
+          <button
+            class="zona-click"
+            id="zona-suelo"
+            onclick="buscarObjeto('suelo')"
+          ></button>
+        </div>
+      </section>
+
+      <section class="dialogue-box">
+        <p class="dialogue-text" id="dialogue-text">
+          Estás en la zona norte. Chispi olfatea, parece buscar algo importante
+          que le resulta familiar. Haz click en la imagen para inspeccionar los
+          matorrales, el árbol o la casa...
+        </p>
+      </section>
+
+      <section class="choices-container" id="choices-container">
+        <button
+          class="btn-choice"
+          onclick="window.open('chispi.html', '_self')"
+        >
+          ⬅️ Volver atrás
+        </button>
+      </section>
+    </main>
+
+    <script src="main.js"></script>
+    <script>
+      window.onload = function () {
+        if (localStorage.getItem("jugueteChispi") === "encontrado") {
+          document.getElementById("item-actual").innerText = "🦴 Juguete";
+          document.getElementById("dialogue-text").innerText =
+            "Ya has encontrado el juguete de Chispi aquí. ¡Puedes volver atrás!";
+
+          var pantallaJuego = document.getElementById("game-screen-bg");
+          if (pantallaJuego) {
+            pantallaJuego.classList.remove("rama-norte");
+            pantallaJuego.classList.add("rama-norte-encontrado");
+          }
+        }
+      };
+    </script>
+  </body>
+</html>
